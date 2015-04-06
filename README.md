@@ -1,4 +1,4 @@
-# gulp-watch-path [![NPM version][npm-image]][npm-url]
+# gulp-watch-path
 
 This is for the expansion of the gulp.watch(event)
 
