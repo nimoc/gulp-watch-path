@@ -18,19 +18,19 @@ $ npm install -D gulp-watch-path
 
 ```js
 gulp.watch('src/**/*', function (event) {
-    var path = require('gulp-watch-path')(event, 'src/', 'dist/', 'node');
-    console.log(path)
+    var paths = require('gulp-watch-path')(event, 'src/', 'dist/', 'node');
+    console.log(paths)
     /*
-    path {srcPath: 'src/file.js',
+    paths {srcPath: 'src/file.js',
           srcDir: 'src/',
           distPath: 'dist/file.node',
           distDir: 'dist/',
           srcFilename: 'file.js',
           distFilename: 'file.node' }
     */
-    gulp.src(path.srcPath)
+    gulp.src(paths.srcPath)
         .pipe(uglify())
-        .pipe(gulp.dest(path.distDir))
+        .pipe(gulp.dest(paths.distDir))
 })
 ```
 
@@ -44,16 +44,16 @@ var combiner = require('stream-combiner2')
 
 gulp.task('default', function () {
     gulp.watch('src/**/*.js', function (event) {
-        var path = watchPath(event,'src/', 'dist/');
+        var paths = watchPath(event,'src/', 'dist/');
         /*
-            path
-                srcPath: 'src/file.js',
-                distDir: 'dist/'
+        paths
+            srcPath: 'src/file.js',
+            distDir: 'dist/'
         */
         var combined = combiner.obj([
-            gulp.src(path.srcPath), // src/file.js
+            gulp.src(paths.srcPath), // src/file.js
             uglify(),
-            gulp.dest(path.distDir) // dist/
+            gulp.dest(paths.distDir) // dist/
         ]);
         combined.on('error', function (err) {
             console.log('--------------')
@@ -65,8 +65,8 @@ gulp.task('default', function () {
         })
 
         console.log('\n')
-        console.log(event.type + ': ' + path.srcPath)
-        console.log('dist: ' + path.distPath)
+        console.log(event.type + ': ' + paths.srcPath)
+        console.log('dist: ' + paths.distPath)
         /*
         changed: src/file.js
         dist: dist/file.js
