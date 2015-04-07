@@ -26,6 +26,12 @@ var main = function (event, search, replace, ext) {
     }
     // index.js
     var srcFilename = event.path.replace(/.*?([^\/]+)$/, '$1')
+    if (/\.coffee$/i.test(srcFilename)) {
+        ext = 'js'
+    } else if (/\.(scss|sass|less)$/i.test(srcFilename)) {
+        ext = 'css'
+    }
+
     if (ext) {
         distFilename = srcFilename.replace(/[^.]+$/, ext);
     } else {
