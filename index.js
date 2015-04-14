@@ -1,4 +1,3 @@
-var path = require('path')
 var log = console.log
 var main = function (event, search, replace, ext) {
     /*
@@ -24,12 +23,17 @@ var main = function (event, search, replace, ext) {
     if (typeof search === 'string') {
         search = fStringToPrefixRegExp(search) // src ==> \/src\/
     }
-    // index.js
+    
     var srcFilename = event.path.replace(/.*?([^\/]+)$/, '$1')
+    //log('srcFilename: ' + srcFilename)
+    // index.js
+    
     if (/\.coffee$/i.test(srcFilename)) {
         ext = 'js'
     } else if (/\.(scss|sass|less)$/i.test(srcFilename)) {
         ext = 'css'
+    } else if (/\.(handlebars|hbs)$/i.test(srcFilename)) {
+        ext = 'js'
     }
 
     if (ext) {
@@ -38,27 +42,30 @@ var main = function (event, search, replace, ext) {
         distFilename = srcFilename;
     }
 
-    // ^\/Documents\/code\/gulp-watch-path\/
     var rDirname = fStringToPrefixRegExp( process.cwd() )
-
-    // src/js/log.js
+    //log('rDirname: ' + rDirname)
+    // ^\/Documents\/code\/gulp-watch-path\/
+    
     var srcPath = event.path.replace(rDirname, '')
                             .replace(/^\//, '')
     //log('srcPath: ' + srcPath)
+    // src/js/log.js
 
-    // src/js/
+
     var srcDir = srcPath.replace(fStringToSuffixRegExp(srcFilename), '')
     //log('srcDir: ' + srcDir)
+    // src/js/
 
-    // dist/js/log.js
     var distPath = srcPath.replace(search, replace)
     //log('distPath: ' + distPath)
+    // dist/js/log.js
+
     if (ext) {
         distPath = distPath.replace(/[^.]+$/, ext);
     }
-    // dist/js/
     var distDir = distPath.replace(fStringToSuffixRegExp(distFilename), '')
     //log('distDir: ' + distDir)
+    // dist/js/
     
     return {
         srcPath: srcPath,
