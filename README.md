@@ -4,12 +4,16 @@ This is for the expansion of the gulp.watch(event)
 
 Some tasks errors can lead to `gulp.watch` is terminated, using `gulp-watch-path` can solve the problem.
 
-> 有些 gulp 任务编译出错会终止 `gulp.watch`，使用 `gulp-watch-path` 可避免这种情况。
+> 有些 gulp 任务编译出错会终止 `gulp.watch`，使用 `gulp-watch-path` 配合 `stream-combiner2` 可避免这种情况。
+
+When many folder file, can use `gulp-watch-path` "one-on-one" compilation
+
+当文件夹文件很多时，可以利用 `gulp-watch-path` “一对一”编译
 
 ## Install
 
 ```
-$ npm install -D gulp-watch-path
+$ npm i -D gulp-watch-path
 ```
 ## Usage
 

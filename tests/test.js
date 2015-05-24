@@ -28,17 +28,17 @@ describe('search, replace', function () {
                 srcFilename: 'index.scss',
                 distFilename: 'index.css',
                 srcPath: 'src/sass/index.scss',
-                srcDir: 'src/sass/',
+                srcDir: 'src/sass',
                 distPath: 'dist/css/index.css',
-                distDir: 'dist/css/'
+                distDir: 'dist/css'
             },
             {
                 srcFilename: 'index.scss',
                 distFilename: 'index.css',
                 srcPath: 'src\\sass\\index.scss',
-                srcDir: 'src\\sass\\',
+                srcDir: 'src\\sass',
                 distPath: 'dist\\css\\index.css',
-                distDir: 'dist\\css\\'
+                distDir: 'dist\\css'
             }
         )
         )
@@ -54,17 +54,17 @@ describe('search, replace', function () {
                 srcFilename: 'index.coffee',
                 distFilename: 'index.js',
                 srcPath: 'src/js/index.coffee',
-                srcDir: 'src/js/',
+                srcDir: 'src/js',
                 distPath: 'dist/js/index.js',
-                distDir: 'dist/js/'
+                distDir: 'dist/js'
             },
             {
                 srcFilename: 'index.coffee',
                 distFilename: 'index.js',
                 srcPath: 'src\\js\\index.coffee',
-                srcDir: 'src\\js\\',
+                srcDir: 'src\\js',
                 distPath: 'dist\\js\\index.js',
-                distDir: 'dist\\js\\'
+                distDir: 'dist\\js'
             }
         )
         )

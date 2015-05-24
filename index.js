@@ -2,6 +2,7 @@
     传入 gulp.watch(funciton(event){}) 中的 event（event.path） 、 查找起始字符串(search)、替换字符串(replace) 和 扩展名
     扩展名非必填（大部分情况下会自动识别，例如：event.path = 'index.sass' 若 ext 参数为空，ext = 'css'）
 */
+
 var path = require('path')
 var main = function (event, search, replace, ext) {
     var log = function (msg) {
@@ -45,14 +46,16 @@ var main = function (event, search, replace, ext) {
     log('srcFilename: ' + srcFilename)
     // index.js
 
-    if (/\.(coffee|node)$/i.test(srcFilename)) {
-        ext = 'js'
-    }
-    else if (/\.(scss|sass|less)$/i.test(srcFilename)) {
-        ext = 'css'
-    }
-    else if (/\.(handlebars|hbs)$/i.test(srcFilename)) {
-        ext = 'js'
+    if (!ext) {
+        if (/\.(coffee|node)$/i.test(srcFilename)) {
+            ext = 'js'
+        }
+        else if (/\.(scss|sass|less)$/i.test(srcFilename)) {
+            ext = 'css'
+        }
+        else if (/\.(handlebars|hbs)$/i.test(srcFilename)) {
+            ext = 'js'
+        }
     }
 
     if (ext) {
@@ -77,7 +80,7 @@ var main = function (event, search, replace, ext) {
     log('srcPath: ' + srcPath)
     // src/js/log.js
 
-    srcDir = srcPath.replace(fStringToSuffixRegExp(srcFilename), '')
+    srcDir = path.dirname(srcPath)
     log('srcDir: ' + srcDir)
     // src/js/
 
@@ -87,7 +90,8 @@ var main = function (event, search, replace, ext) {
     if (ext) {
         distPath = distPath.replace(/[^.]+$/, ext);
     }
-    distDir = distPath.replace(fStringToSuffixRegExp(distFilename), '')
+    
+    distDir = path.dirname(distPath)
     log('distDir: ' + distDir)
     // dist/js/
     log('\n')
