@@ -6,7 +6,7 @@
 var path = require('path')
 var main = function (event, search, replace, ext) {
     var log = function (msg) {
-        console.log(msg)
+        // console.log(msg)
     }
     var srcFilename, distFilename, srcPath, srcDir, distPath, distDir
     var rStringToRegExp, fStringToPrefixRegExp, fStringToSuffixRegExp, rDirname
