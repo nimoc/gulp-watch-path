@@ -78,3 +78,12 @@ gulp.task('default', function () {
     })
 })
 ```
+
+**`watchPath(event, search, replace, distExt)`**
+
+| 参数 | 说明 |
+|--------|--------|
+|    event    |`gulp.watch` 回调函数的 `event`|
+|    search   |需要被替换的起始字符串|
+|    replace  |第三个参数是新的的字符串|
+|   distExt   |扩展名(非必填)|
